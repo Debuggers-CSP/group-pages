@@ -1,9 +1,7 @@
 ---
 layout: post
 title: Game Mode Selection
-description: Let the user choose the type of RPG they want to create, affecting the examples and style shown later.
-permalink: /rpg/mode
-comments: True
+permalink: /game-mode-selection/
 ---
 
 <div class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -15,8 +13,10 @@ comments: True
         Select the type of RPG experience you want to create. This will shape the examples and style recommendations throughout the creation process.
       </p>
     </div>
+
     <!-- Game Mode Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      
       <!-- Chill / Cozy RPG Card -->
       <div class="game-mode-card group" data-mode="chill">
         <div class="game-mode-card-inner">
@@ -29,26 +29,28 @@ comments: True
               </div>
             </div>
           </div>
+          
           <!-- Content -->
-          <!-- Content -->
-         <div class="game-mode-content">
-        <h3 class="game-mode-title text-white">Chill / Cozy RPG</h3>
-         <p class="game-mode-description text-gray-300">
-            Relaxed pace, exploration-focused gameplay with emphasis on storytelling, character development, and atmospheric world-building.
-         </p>
-          <ul class="game-mode-features">
-         <li class="text-green-400">✓ Peaceful exploration</li>
-         <li class="text-green-400">✓ Rich narrative depth</li>
-          <li class="text-green-400">✓ Character relationships</li>
-          <li class="text-green-400">✓ Low-stress gameplay</li>
-           </ul>
-        </div>  
+          <div class="game-mode-content">
+            <h3 class="game-mode-title">Chill / Cozy RPG</h3>
+            <p class="game-mode-description">
+              Relaxed pace, exploration-focused gameplay with emphasis on storytelling, character development, and atmospheric world-building.
+            </p>
+            <ul class="game-mode-features">
+              <li>✓ Peaceful exploration</li>
+              <li>✓ Rich narrative depth</li>
+              <li>✓ Character relationships</li>
+              <li>✓ Low-stress gameplay</li>
+            </ul>
+          </div>
+          
           <!-- Selection Indicator -->
           <div class="game-mode-selection-indicator">
             <div class="selection-dot"></div>
           </div>
         </div>
       </div>
+
       <!-- Action RPG Card -->
       <div class="game-mode-card group" data-mode="action">
         <div class="game-mode-card-inner">
@@ -60,7 +62,8 @@ comments: True
                 <div class="text-sm text-gray-600 font-medium">Fast & Exciting</div>
               </div>
             </div>
-          </div> 
+          </div>
+          
           <!-- Content -->
           <div class="game-mode-content">
             <h3 class="game-mode-title">Action RPG</h3>
@@ -73,7 +76,8 @@ comments: True
               <li>✓ Epic boss battles</li>
               <li>✓ High-intensity moments</li>
             </ul>
-          </div> 
+          </div>
+          
           <!-- Selection Indicator -->
           <div class="game-mode-selection-indicator">
             <div class="selection-dot"></div>
@@ -81,6 +85,7 @@ comments: True
         </div>
       </div>
     </div>
+
     <!-- Continue Button -->
     <div class="text-center">
       <button id="continue-btn" class="continue-button" disabled>
@@ -95,7 +100,7 @@ comments: True
 
 <style>
   .game-mode-card {
-    background: black;
+    background: white;
     border-radius: 1.5rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
@@ -137,12 +142,12 @@ comments: True
   .game-mode-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #ffffffff;
+    color: #1f2937;
     margin-bottom: 0.75rem;
   }
 
   .game-mode-description {
-    color: #d1d5db;
+    color: #6b7280;
     margin-bottom: 1rem;
     line-height: 1.6;
   }
@@ -154,7 +159,7 @@ comments: True
   }
 
   .game-mode-features li {
-    color: #34d399;
+    color: #059669;
     margin-bottom: 0.5rem;
     font-weight: 500;
   }
@@ -165,7 +170,7 @@ comments: True
     right: 1rem;
     width: 2rem;
     height: 2rem;
-    border: 2px solid #000000ff;
+    border: 2px solid #d1d5db;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -175,7 +180,7 @@ comments: True
 
   .game-mode-card.selected .game-mode-selection-indicator {
     border-color: #8b5cf6;
-    background-color: #000000ff;
+    background-color: #8b5cf6;
   }
 
   .selection-dot {
