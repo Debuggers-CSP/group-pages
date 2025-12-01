@@ -362,6 +362,15 @@ body::before {
         </div>
         
         <div id="message" class="message"></div>
+        
+        <div id="continue-section" style="display: none; margin-top: 20px;">
+            <button class="submit-btn" onclick="continueToGame()">
+                <span style="position: relative; z-index: 1;">Continue to Game</span>
+            </button>
+            <button class="submit-btn" onclick="signOut()" style="margin-top: 15px; background: linear-gradient(135deg, #f44336, #e53935);">
+                <span style="position: relative; z-index: 1;">Sign Out</span>
+            </button>
+        </div>
     </div>
 </div>
 
@@ -436,12 +445,16 @@ async function handleRegister(event) {
             showMessage(`🎉 Welcome, ${firstName}! Your account has been created successfully.`, 'success');
             event.target.reset();
             
-            // Auto-switch to login after 2 seconds
             setTimeout(() => {
                 document.querySelectorAll('.tab-btn')[1].click();
             }, 2000);
         } else {
-            showMessage(`⚠️ ${data.message || 'Registration failed. Please try again.'}`, 'error');
+            // Check if it's a duplicate user error
+            if (response.status === 409 || (data.message && data.message.includes('already exists'))) {
+                showMessage(`⚠️ An account with this GitHub ID already exists. Please login instead.`, 'error');
+            } else {
+                showMessage(`⚠️ ${data.message || 'Registration failed. Please try again.'}`, 'error');
+            }
         }
     } catch (error) {
         hideLoading();
@@ -480,7 +493,6 @@ async function handleLogin(event) {
         if (response.ok) {
             showMessage(`✅ Welcome back, ${firstName}! Logging in...`, 'success');
             
-            // Store user session
             localStorage.setItem('userSession', JSON.stringify({
                 firstName: firstName,
                 lastName: lastName,
@@ -488,8 +500,7 @@ async function handleLogin(event) {
                 loginTime: new Date().toISOString()
             }));
             
-            // Redirect to game after 1.5 seconds
-            setTimeout(() => {
++            setTimeout(() => {
                 window.location.href = '/rpg/mode';
             }, 1500);
         } else {
@@ -508,6 +519,30 @@ window.addEventListener('load', () => {
     if (session) {
         const sessionData = JSON.parse(session);
         showMessage(`👋 Welcome back, ${sessionData.firstName}! You're already logged in.`, 'success');
+        
+        // Hide forms and show continue button
+        document.querySelectorAll('.form-container').forEach(form => {
+            form.style.display = 'none';
+        });
+        document.querySelector('.tab-buttons').style.display = 'none';
+        document.getElementById('continue-section').style.display = 'block';
     }
 });
+
+function continueToGame() {
+    window.location.href = '/rpg/mode';
+}
+
+function signOut() {
+    // Clear the user session
+    localStorage.removeItem('userSession');
+    
+    // Show success message
+    showMessage('✅ Successfully signed out!', 'success');
+    
+    // Reload page to show login forms again
+    setTimeout(() => {
+        location.reload();
+    }, 1000);
+}
 </script>
