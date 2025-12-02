@@ -352,6 +352,11 @@ body::after {
                     <input type="text" class="form-input" id="reg-github" placeholder="Enter your GitHub username" required>
                 </div>
                 
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="reg-password" placeholder="Create a password" required>
+                </div>
+                
                 <button type="submit" class="submit-btn">
                     <span style="position: relative; z-index: 1;">Register</span>
                 </button>
@@ -374,6 +379,11 @@ body::after {
                 <div class="form-group">
                     <label class="form-label">GitHub ID</label>
                     <input type="text" class="form-input" id="login-github" placeholder="Enter your GitHub username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="login-password" placeholder="Enter your password" required>
                 </div>
                 
                 <button type="submit" class="submit-btn">
@@ -447,11 +457,13 @@ async function handleRegister(event) {
     const firstName = document.getElementById('reg-firstname').value;
     const lastName = document.getElementById('reg-lastname').value;
     const githubId = document.getElementById('reg-github').value;
+    const password = document.getElementById('reg-password').value;
     
     const userData = {
         FirstName: firstName,
         LastName: lastName,
-        GitHubID: githubId
+        GitHubID: githubId,
+        Password: password
     };
     
     try {
@@ -496,11 +508,13 @@ async function handleLogin(event) {
     const firstName = document.getElementById('login-firstname').value;
     const lastName = document.getElementById('login-lastname').value;
     const githubId = document.getElementById('login-github').value;
+    const password = document.getElementById('login-password').value;
     
     const loginData = {
         FirstName: firstName,
         LastName: lastName,
-        GitHubID: githubId
+        GitHubID: githubId,
+        Password: password
     };
     
     try {
