@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 
-
     {%- include head.html -%}
 
     <body>
@@ -13,14 +12,95 @@
 
         <main class="page-content" aria-label="Content">
             <div class="wrapper">
-                                <div class="opencs_root">
-                                    {{ content }}
-                                </div>
+                <div class="opencs_root">
+                    {{ content }}
+                </div>
             </div>
         </main>
 
         {%- include themes/minima/footer.html -%}
 
         {%- include mermaid.html -%}
+        
+        <!-- Add sidebar at the END of body to ensure it's on top -->
+        {% if page.sidebar %}
+          {% include rpg_sidebar.html %}
+          
+          <!-- Add sidebar CSS LAST for highest priority -->
+          <style>
+            /* Force sidebar to be on top of everything */
+            #rpg-nav-sidebar {
+                z-index: 99999 !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+            }
+            
+            /* Force toggle button on top */
+            #nav-toggle {
+                z-index: 100000 !important;
+                position: fixed !important;
+            }
+            
+            /* Adjust content when sidebar is active */
+            .has-rpg-sidebar .page-content {
+                margin-left: 280px;
+                transition: margin-left 0.3s ease;
+                position: relative;
+                z-index: 1 !important;
+            }
+            
+            .has-rpg-sidebar .wrapper {
+                max-width: calc(100% - 280px) !important;
+                width: calc(100% - 280px) !important;
+                position: relative;
+                z-index: 1 !important;
+            }
+            
+            /* Ensure header doesn't overlap */
+            .has-rpg-sidebar header {
+                z-index: 9999 !important;
+                position: relative;
+            }
+            
+            /* Make sure no other elements cover sidebar */
+            *:not(#rpg-nav-sidebar):not(#nav-toggle) {
+                z-index: auto !important;
+            }
+            
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .has-rpg-sidebar .page-content {
+                    margin-left: 0;
+                }
+                
+                .has-rpg-sidebar .wrapper {
+                    max-width: 100% !important;
+                    width: 100% !important;
+                }
+            }
+          </style>
+          
+          <!-- Add class to body for CSS adjustments -->
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              document.body.classList.add('has-rpg-sidebar');
+              
+              // Force sidebar to top layer
+              const sidebar = document.getElementById('rpg-nav-sidebar');
+              const toggle = document.getElementById('nav-toggle');
+              
+              if (sidebar) {
+                sidebar.style.zIndex = '99999';
+                sidebar.style.position = 'fixed';
+                sidebar.style.top = '0';
+              }
+              
+              if (toggle) {
+                toggle.style.zIndex = '100000';
+              }
+            });
+          </script>
+        {% endif %}
     </body>
 </html>
