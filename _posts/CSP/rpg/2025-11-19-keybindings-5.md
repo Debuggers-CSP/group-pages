@@ -989,8 +989,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         <span class="nav-text">Game Systems</span>
         <span class="nav-lock">✓</span>
       </a>
-      <a href="/rpg/review" class="nav-link" data-page="6" id="review-link">
-        <span class="nav-number">6</span>
+      <a href="/rpg/review" class="nav-link" data-page="7" id="review-link">
+        <span class="nav-number">7</span>
         <span class="nav-text">Review</span>
         <span class="nav-lock">✓</span>
         <span class="nav-check">✓</span>
