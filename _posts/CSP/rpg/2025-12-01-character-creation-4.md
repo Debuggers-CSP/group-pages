@@ -584,7 +584,7 @@ comments: True
       const canvas = document.getElementById('wm-canvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      const cols = 10, rows = 10, cell = 40; // big virtual grid
+      const cols = 100, rows = 100, cell = 60; // big virtual grid
       const state = { grid: Array.from({length: rows}, () => Array(cols).fill(null)), pins: [], tool: 'paint', selected: { kind:'tile', category:'water', subtype:'Ocean' }, history: [] };
       const view = { scale: 1, min: 0.5, max: 2.5, offsetX: 0, offsetY: 0 };
       const COLORS = { WATER:'#1e3a8a', LAND:'#6b4f2a', DESERT:'#f59e0b' };
